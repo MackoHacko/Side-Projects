@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Analyzer</title>
+  <link rel="stylesheet" type="text/css" href="static/analyzer.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+  {% extends "template.html" %}
+  {% block content %}
+
+  <div class="container" style="width: 500px; margin: 0 auto;">
+
+    <h1> Analyzer </h1>
+    <p> Please specify what logs to search for: </p>
+
+    <form class="pure-form pure-form-stacked" action="{{ url_for('reports') }}" method="POST">
+      <fieldset>
+        <div class="pure-g">
+          <div id="parent">
+            <div class="pure-u-1 pure-u-md-1-3" id="wide">
+              <label>Server</label>
+              <input type="text" id="multi-first-name" class="pure-u-23-24" placeholder="Server" name="server" required
+                style="width: 280px;" />
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3" id="narrow">
+              <label for="multi-state">Region</label>
+              <select name="serverRegion" style="width: 100%; height: 42px;">
+                <option>EU</option>
+                <option>US</option>
+                <option>CN</option>
+                <option>KR</option>
+              </select>
+            </div>
+          </div>
+          <div class="pure-u-1 pure-u-md-1-3">
+            <label>Guild</label>
+            <input type="text" id="multi-last-name" class="pure-u-23-24" placeholder="Guild" name="guild" required
+              style="width: 100%;" />
+          </div>
+          <div class="pure-u-1 pure-u-md-1-3">
+            <label>From Date</label>
+            <input type="date" class="pure-u-23-24" name="start" style="width: 100%;" />
+          </div>
+          <div class="pure-u-1 pure-u-md-1-3">
+            <label>To Date</label>
+            <input type="date" class="pure-u-23-24" name="end" style="width: 100%;" />
+          </div>
+          <div id="parent">
+            <div class="pure-u-1 pure-u-md-1-3" id="wide">
+              <label>Type</label>
+              {{ form.csrf_token }}
+              {{ form.log_type(style="width: 280px;") }}
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3" id="narrow">
+              <label>Class</label>
+              {{ form.csrf_token }}
+              {{ form.sourceclasses(style="width: 100%;") }}
+            </div>
+          </div>
+          <div id="parent">
+            <div class="pure-u-1 pure-u-md-1-3" id="wide">
+              <label>Zone</label>
+              {{ form.csrf_token }}
+              {{ form.zone(style="width: 280px;") }}
+            </div>
+            <div class="pure-u-1 pure-u-md-1-3" id="narrow">
+              <label>Encounter</label>
+              {{ form.csrf_token }}
+              {{ form.encounter(style="width: 100%") }}
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+
+  <script>
+
+    let zone_select = document.getElementById('zone')
+    let encounter_select = document.getElementById('encounter')
+
+    if (sessionStorage.getItem("encounters")) {
+      // Restore the contents of the text field
+      let optionHTML = '';
+      for (let encounter of JSON.parse(sessionStorage.getItem("encounters"))) {
+        optionHTML += '<option value="' + encounter.id + '">' + encounter.name + '</option>';
+      }
+      encounter_select.innerHTML = optionHTML;
+    }
+
+    zone_select.onchange = function () {
+      zone = zone_select.value;
+      fetch('/encounters/' + zone).then(function (response) {
+        response.json().then(function (data) {
+          let optionHTML = '';
+          sessionStorage.setItem("encounters", JSON.stringify(data.encounters));
+          for (let encounter of data.encounters) {
+            optionHTML += '<option value="' + encounter.id + '">' + encounter.name + '</option>';
+          }
+          encounter_select.innerHTML = optionHTML;
+        });
+      });
+    }
+  </script>
+
+  {% endblock %}
+</body>
+
+
+
+</html>

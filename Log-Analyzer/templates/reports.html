@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Reports</title>
+</head>
+
+<body>
+  {% extends "template.html" %}
+  {% block content %}
+  <div class="container" style="width: 500px; margin: 0 auto;">
+    <form action="{{ url_for('result') }}" method="POST">
+      <p> Choose what logs to compare</p>
+      <td><button type="submit" id="button" class="pure-button pure-button-primary" onclick="showDiv()">Compare
+        </button></td>
+      <div id='spinner' class="spinner-border" role="status" style="display:none; float: right;"></div>
+      <br>
+      <br>
+      <div id="table">
+        <table class="pure-table" style="width: 100%;">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for report in reports %}
+            <td>
+              {{report.title}}
+            </td>
+            <td>
+              {{report.start}}
+            </td>
+            <td style="text-align:center;">
+              <input type="checkbox" name="code" value="{{report.id}}" style="margin: 0 auto;">
+            </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+  </div>
+  <input type="hidden" name="log_type" value="{{ params.log_type }}">
+  <input type="hidden" name="sourceclasses" value="{{ params.sourceclasses }}">
+  <input type="hidden" name="encounter" value="{{ params.encounter }}">
+  <input type="hidden" name="form_type" value="logs">
+  </form>
+
+
+  </div>
+
+  <script>
+    function showDiv() {
+      document.getElementById('spinner').style.display = "block";
+    }
+  </script>
+  {% endblock %}
+
+</body>
+
+</html>

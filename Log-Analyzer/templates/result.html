@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Results</title>
+
+</head>
+
+<body>
+  {% extends "template.html" %}
+  {% block content %}
+  <div class="container" style="width: 500px; margin: 0 auto;">
+    <h1> Result </h1>
+    <h6> Averages of total {{ form.log_type }} for the selected classes / logs </h6>
+    <ul>
+      <li>Numbers before each name refer to the number of records we have for that player for the chosen logs</li>
+      <li>Error bars indicate one standard deviation</li>
+    </ul>
+  </div>
+  <div style="text-align: center; width: 70%; margin: 0 auto;">
+    <!-- Block parent element -->
+    <img src={{graph}} alt="John Doe" style="width: 100%;">
+  </div>
+  {% endblock %}
+</body>
+
+</html>

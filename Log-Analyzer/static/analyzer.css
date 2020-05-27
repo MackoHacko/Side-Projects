@@ -1,0 +1,12 @@
+#parent {
+    width: 100%;
+    display: flex;
+}
+
+#narrow {
+    width: 250px;
+}
+
+#wide {
+    flex: 1;
+}

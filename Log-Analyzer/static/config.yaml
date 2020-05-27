@@ -1,0 +1,190 @@
+credentials:
+  api_key: 036195dae168577c11c0b6bf1e88fd07
+
+reports:
+  base_url: https://classic.warcraftlogs.com:443/v1/reports/guild/
+  paths:
+    - guild
+    - server
+    - serverRegion
+  params:
+    - start
+    - end
+
+logs:
+  base_url: https://classic.warcraftlogs.com:443/v1/report/tables/
+  paths:
+    - log_type
+  params:
+    - encounter
+
+sourceclasses:
+  Damage Dealers:
+    - Rogue
+    - Warlock
+    - Warrior
+    - Mage
+    - Hunter
+
+  Healers:
+    - Shaman
+    - Paladin
+    - Priest
+    - Druid
+  Rogues: Rogue
+  Warlocks: Warlock
+  Warriors: Warrior
+  Mages: Mage
+  Hunters: Hunter
+  Shamans: Shaman
+  Paladins: Paladin
+  Priests: Priest
+  Druids: Druid
+
+class_colors:
+  Rogue:
+    color: gold
+
+  Warlock:
+    color: rebeccapurple
+
+  Warrior:
+    color: saddlebrown
+
+  Mage:
+    color: deepskyblue
+
+  Hunter:
+    color: olive
+
+  Shaman:
+    color: royalblue
+
+  Paladin:
+    color: palevioletred
+
+  Priest:
+    color: white
+
+  Druid:
+    color: chocolate
+
+  Pet:
+    color: gray
+
+zones:
+  0:
+    - id:
+      name: "Encounters + Trash"
+
+  1000:
+    - id:
+      name: Encounters + Trash
+
+    - id: 0
+      name: Trash
+
+    - id: 663
+      name: Lucifron
+
+    - id: 664
+      name: Magmadar
+
+    - id: 665
+      name: Gehennas
+
+    - id: 667
+      name: Shazzrah
+
+    - id: 668
+      name: Geddon
+
+    - id: 669
+      name: Sulfuron
+
+    - id: 670
+      name: Golemagg
+
+    - id: 671
+      name: Majordomo
+
+    - id: 672
+      name: Ragnaros
+
+  1001:
+    - id:
+      name: Encounters + Trash
+
+    - id: 0
+      name: Trash
+
+    - id: 1084
+      name: Onyxia
+
+  1002:
+    - id:
+      name: Encounters + Trash
+
+    - id: 0
+      name: Trash
+
+    - id: 610
+      name: Razorgore
+
+    - id: 611
+      name: Vaelastrasz
+
+    - id: 612
+      name: Razorgore
+
+    - id: 613
+      name: Firemaw
+
+    - id: 614
+      name: Ebonroc
+
+    - id: 615
+      name: Flamegor
+
+    - id: 616
+      name: Chromaggus
+
+    - id: 617
+      name: Nefarian
+
+  1003:
+    - id:
+      name: Encounters + Trash
+
+    - id: 784
+      name: Venoxis
+
+    - id: 785
+      name: Jeklik
+
+    - id: 786
+      name: Mar'li
+
+    - id: 787
+      name: Mandokir
+
+    - id: 788
+      name: Madness
+
+    - id: 789
+      name: Thekal
+
+    - id: 790
+      name: Gahz'ranka
+
+    - id: 791
+      name: Arlokk
+
+    - id: 792
+      name: Jin'do
+
+    - id: 793
+      name: Hakkar
+
+    - id: 794
+      name: Hakkar (Hard)
